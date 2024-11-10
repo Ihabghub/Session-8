@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="top">
+            <button onclick="plusfive()">+5</button>
+        </div>
+        <div class="center">
+            <button onclick="minusone()">-1</button>
+            <div class="output" id="output"><span class="zero">0</span></div>     
+            <button onclick="plusone()">+1</button>
+        </div>
+        <div class="bottom">
+            <button onclick="minusfive()">-5</button>
+        </div>
+    </main>
+
+    <script>
+
+    function plusone(){
+            let outputDisplay = document.getElementById('output');
+            let outputDisplayValue = parseInt(outputDisplay.innerText);
+            outputDisplayValue = outputDisplayValue + 1;
+            outputDisplay.innerText = outputDisplayValue;
+        }
+
+        function minusone(){
+            let outputDisplay = document.getElementById('output');
+            let outputDisplayValue = parseInt(outputDisplay.innerText);
+            outputDisplayValue = outputDisplayValue - 1;
+            outputDisplay.innerText = outputDisplayValue;
+        }
+
+        function plusfive(){
+            let outputDisplay = document.getElementById('output');
+            let outputDisplayValue = parseInt(outputDisplay.innerText);
+            outputDisplayValue = outputDisplayValue + 5;
+            outputDisplay.innerText = outputDisplayValue;
+        }
+
+        function minusfive(){
+            let outputDisplay = document.getElementById('output');
+            let outputDisplayValue = parseInt(outputDisplay.innerText);
+            outputDisplayValue = outputDisplayValue - 5;
+            outputDisplay.innerText = outputDisplayValue;
+        }
+
+        
+    </script>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+        }
+
+        button{
+            border-radius: 50%;
+        }
+
+        main{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 80px auto;
+            height: 500px;
+            width: 500px;
+        }
+
+        main .center{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .output{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            background-color: whitesmoke;
+            border: 2px solid black;
+            border-radius: 50%;
+        }
+
+        .zero{
+            
+        }
+
+        main .top{
+            display: flex;
+            justify-content: center;
+        }
+
+        main .top button{
+            padding: 20px;
+        }
+
+        main .center button{
+            padding: 20px;
+        }
+
+        main .bottom{
+            display: flex;
+            justify-content: center;
+        }
+        
+        main .bottom button{
+            
+            padding: 20px;
+        }
+
+    </style>
+    
+</body>
+</html>

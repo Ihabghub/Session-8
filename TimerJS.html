@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ihab Stopwatch</title>
+
+  </head>
+  <body>
+    <main>
+    <div class="clock">
+      <div id="timer">00:30</div>
+      <div class="buttons">
+      <button id="start">Start</button>
+      <button id="pause">Pause</button>
+    </div>
+    </div>
+</main>
+    <audio id="tickSound" src="./mixkit-censorship-beep-1082.wav"></audio>
+    <audio id="endSound" src="./mixkit-repeating-arcade-beep-1084.wav"></audio>
+
+    <script>
+      let startTime,
+        intervalId,
+        elapsedTime = 0;
+      let timerRunning = false;
+      let tickSound = document.getElementById("tickSound");
+      let endSound = document.getElementById("endSound");
+      let timerElement = document.getElementById("timer");
+      let countdown = 30; 
+      let timeLeft = countdown;
+
+      function formatTime(time) {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        return `${minutes.toString().padStart(2, "0")}:${seconds
+          .toString()
+          .padStart(2, "0")}`;
+      }
+
+      function updateTimer() {
+        timeLeft -= 1;
+        timerElement.textContent = formatTime(timeLeft);
+
+        if (timeLeft > 0 && timeLeft % 5 === 0) {
+          tickSound.play();
+        }
+
+        if (timeLeft <= 0) {
+          clearInterval(intervalId);
+          
+          timerElement.classList.add("danger");
+          endSound.play();
+        }
+      }
+
+      document.getElementById("start").addEventListener("click", () => {
+        if (!timerRunning) {
+          intervalId = setInterval(updateTimer, 1000);
+          timerRunning = true;
+        }
+      });
+
+      document.getElementById("pause").addEventListener("click", () => {
+        clearInterval(intervalId);
+        timerRunning = false;
+      });
+    </script>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+          }
+    
+          main{
+            display: flex;
+            margin: 60px 650px;
+          }
+    
+          .clock{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-image: url(./unsplash_8gWEAAXJjtI.png);
+            background-size: cover;
+            height: 500px;
+            width: 400px;
+          }
+    
+          .clock .buttons{
+            display: flex;
+            justify-content: center;
+          }
+    
+          #timer {
+            font-size: 50px;
+            margin-bottom: 100px;
+            color: black;
+            }
+    
+    
+          button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            width:100px ;
+            height: 50px;
+          }
+        </style>
+  </body>
+</html>
